@@ -7,6 +7,7 @@ Este proyecto implementa un sistema de autenticación basado en JSON Web Tokens 
 
 El proyecto está estructurado siguiendo buenas prácticas de desarrollo profesional, separando rutas, modelos, esquemas, servicios, configuración y conexión a base de datos. La intención es facilitar su lectura, mantenimiento y escalabilidad.
 
+
 Tecnologías y librerías principales
 
 Python 3.11+
@@ -25,6 +26,7 @@ Python-Jose – Generación y validación de JWT.
 
 Passlib – Hashing seguro de contraseñas.
 
+
 SQLite se seleccionó debido a:
 
 Su facilidad de uso.
@@ -32,6 +34,7 @@ Su facilidad de uso.
 No requiere instalar servicios adicionales.
 
 Permite concentrarse en la lógica de autenticación sin complejidad extra.
+
 
 Estructura del proyecto
 
@@ -51,19 +54,29 @@ database.py: Configuración de la base de datos y creación de tablas.
 
 main.py: Punto de entrada de la API.
 
+
 Uso del archivo .env.example
 
 El archivo .env.example contiene las variables necesarias para correr el proyecto (por ejemplo, la clave secreta para firmar JWT). El usuario debe duplicarlo y renombrarlo a .env antes de ejecutar la aplicación.
 
+
 Activación del entorno virtual
+
 python -m venv .venv
+
 source .venv/Scripts/activate   # En Windows
 
+
 Instalación de dependencias
+
 pip install -r requirements.txt
 
+
 Ejecución del servidor
+
 uvicorn app.main:app --reload
 
+
 Licencia
+
 Este proyecto utiliza la licencia MIT, adecuada para proyectos educativos y demostrativos.
