@@ -1,10 +1,10 @@
-# app/models/user.py
+from sqlalchemy import Column, Integer, String
+from app.db import Base
 
-from sqlmodel import SQLModel, Field
-from typing import Optional
+class User(Base):
+    __tablename__ = "users"
 
-class User(SQLModel, table=True):
-    id: Optional[int] = Field(default=None, primary_key=True)
-    username: str = Field(index=True)
-    email: str = Field(index=True, unique=True)
-    password_hash: str
+    id = Column(Integer, primary_key=True, index=True)
+    username = Column(String(50), unique=True, nullable=False, index=True)
+    email = Column(String(120), unique=True, nullable=False, index=True)
+    password_hash = Column(String(255), nullable=False)
