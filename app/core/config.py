@@ -1,14 +1,14 @@
-from pydantic import BaseSettings
+# app/core/config.py
+from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
-    SECRET_KEY: str
-    ALGORITHM: str = "HS256"
-    ACCESS_TOKEN_EXPIRE_MINUTES: int = 15
-    REFRESH_TOKEN_EXPIRE_DAYS: int = 7
-    DATABASE_URL: str = "sqlite:///./db.sqlite3"
+    APP_NAME: str = "Auth JWT FastAPI"
+    APP_VERSION: str = "1.0.0"
+    DATABASE_URL: str = "sqlite:///./auth.db"
+    JWT_SECRET: str = "supersecret"
+    JWT_ALGORITHM: str = "HS256"
 
     class Config:
         env_file = ".env"
-        env_file_encoding = "utf-8"
 
 settings = Settings()

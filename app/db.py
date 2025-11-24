@@ -1,13 +1,18 @@
-from sqlmodel import SQLModel, create_engine, Session
+# app/db.py
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker, declarative_base
 from app.core.config import settings
 
-# SQLite local: check_same_thread=False necesario para un app single-file
-engine = create_engine(settings.DATABASE_URL, connect_args={"check_same_thread": False})
+engine = create_engine(
+    settings.DATABASE_URL,
+    connect_args={"check_same_thread": False},  # Requerido por SQLite
+)
+
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+Base = declarative_base()
 
 def init_db():
-    # Create all tables (from SQLModel models). Models must import SQLModel metadata.
-    SQLModel.metadata.create_all(engine)
-
-def get_session():
-    with Session(engine) as session:
-        yield session
+    # Importar modelos aquí para que SQLAlchemy pueda crearlos
+    from app.models import user  # (lo crearemos después)
+    Base.metadata.create_all(bind=engine)
