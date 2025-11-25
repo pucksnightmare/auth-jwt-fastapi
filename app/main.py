@@ -1,5 +1,3 @@
-# app/main.py
-
 from fastapi import FastAPI
 from app.db import init_db
 from app.core.config import settings
