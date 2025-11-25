@@ -17,20 +17,20 @@ def login(data: LoginRequest, db: Session = Depends(get_db)):
     if not user:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Usuario no encontrado"
+            detail="Usuario no encontrado",
         )
 
     # Verificar password
     if not verify_password(data.password, user.password_hash):
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Contraseña incorrecta"
+            detail="Contraseña incorrecta",
         )
 
-    # Crear token JWT
+    # Crear token JWT con el username en el "sub"
     token = create_access_token({"sub": user.username})
 
     return {
         "access_token": token,
-        "token_type": "bearer"
+        "token_type": "bearer",
     }
